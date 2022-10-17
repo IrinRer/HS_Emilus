@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/app-views/offlinePoints/addresses/index.js"],"names":["Adresses"],"mappings":"0HAMeA,UAJE,WACb,OAAO","file":"static/js/26.e594fc1c.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Adresses = () => {\r\n    return <p>Адреса</p>\r\n}\r\n\r\nexport default Adresses;\r\n"],"sourceRoot":""}

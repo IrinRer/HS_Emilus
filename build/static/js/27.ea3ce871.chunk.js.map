@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/app-views/offlinePoints/geofences/index.js"],"names":["Geofences"],"mappings":"0HAMeA,UAJG,WACd,OAAO","file":"static/js/27.ea3ce871.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Geofences = () => {\r\n    return <p>Геозоны</p>\r\n}\r\n\r\nexport default Geofences;\r\n"],"sourceRoot":""}
