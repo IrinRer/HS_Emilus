@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import utils from 'utils';
 import { Grid } from 'antd';
 
+
 const { useBreakpoint } = Grid;
 
 const getLogoWidthGutter = (props, isMobile) => {
@@ -47,7 +48,6 @@ const getLogoDisplay = (isMobile, mobileLogo) => {
 }
 
 export const Logo = (props) => {
-  console.log(getLogo(props))
   const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg')
   return (
     <div
