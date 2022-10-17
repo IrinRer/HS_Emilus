@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/app-views/promoCodes/index.js"],"names":["PromoCodes"],"mappings":"0HAMeA,UAJI,WACjB,OAAO","file":"static/js/30.e8025410.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst PromoCodes = () => {\r\n  return <div>Промокоды</div>;\r\n};\r\n\r\nexport default PromoCodes;\r\n"],"sourceRoot":""}
