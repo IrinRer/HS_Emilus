@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/app-views/customers/groupsClients/index.js"],"names":["GroupsClients"],"mappings":"0HAMeA,UAJO,WACpB,OAAO","file":"static/js/19.8f685f92.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst GroupsClients = () => {\r\n  return <div>Группы клиентов</div>;\r\n};\r\n\r\nexport default GroupsClients;\r\n"],"sourceRoot":""}
