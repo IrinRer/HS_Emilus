@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/app-views/dashbroad/index.js"],"names":["Dashbroad"],"mappings":"0HAMeA,UAJG,WAChB,OAAO","file":"static/js/22.2aaa6828.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Dashbroad = () => {\r\n  return <div>Дашброад</div>;\r\n};\r\n\r\nexport default Dashbroad;\r\n"],"sourceRoot":""}

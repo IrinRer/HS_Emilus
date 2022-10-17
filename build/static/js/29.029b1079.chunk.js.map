@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/app-views/orders/index.js"],"names":["Orders"],"mappings":"0HAMeA,UAJA,WACb,OAAO","file":"static/js/29.029b1079.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Orders = () => {\r\n  return <div>Заказы</div>;\r\n};\r\n\r\nexport default Orders;\r\n"],"sourceRoot":""}
