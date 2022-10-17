@@ -1,5 +1,12 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put } from "redux-saga/effects";
+import { fetchUsersAction } from "redux/actions/Users";
+import exampleService from "services/ExampleService";
 
-function* fetchUsers(action) { 
-
+export function* fetchUsers() {
+  try {
+    const users = yield call(exampleService.getUsers);
+    yield put(fetchUsersAction(users));
+  } catch (err) {
+    yield put(fetchUsersAction(err));
+  }
 }

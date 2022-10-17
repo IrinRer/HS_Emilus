@@ -10,6 +10,14 @@ exampleService.getPost = function (params) {
   })
 }
 
+exampleService.getUsers = function (params) {
+  return fetch({
+    url: '/users/',
+    method: 'get',
+    params
+  })
+}
+
 exampleService.setPost = function (data) {
   return fetch({
     url: '/posts',

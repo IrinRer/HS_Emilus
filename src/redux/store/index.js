@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reducers from "../reducers";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "../sagas/index";
+import { fetchUsers } from "redux/sagas/Users";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +16,7 @@ function configureStore(preloadedState) {
   ));
 
   sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(fetchUsers);
 
   if (module.hot) {
     module.hot.accept("../reducers/index", () => {
