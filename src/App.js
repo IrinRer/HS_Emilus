@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
-          <Router basename={process.env.PUBLIC_URL}>
+          <Router basename={window.location.pathname || ''}>
             <Switch>
               <Route path="/" component={Views}/>
             </Switch>
