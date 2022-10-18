@@ -5,7 +5,7 @@ import CodeBox from './CodeBox';
 const DemoCard = props => {
 
   const { code, children } = props
-  const enUs = 'en-US: '
+  const enUs = 'en-US'
   const [markdown, setMarkdown] = useState('')
 
   useEffect(() => {

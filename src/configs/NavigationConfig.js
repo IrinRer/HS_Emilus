@@ -19,53 +19,53 @@ const dashBoardNavTree = [
   {
     key: "home",
     path: `${APP_PREFIX_PATH}/home`,
-    title: "Основные",
+    title: "home",
     icon: "",
     breadcrumb: false,
     submenu: [
       {
-        key: "dashbroad",
+        key: "sidenav.dashboard",
         path: `${APP_PREFIX_PATH}/home/dashbroad`,
-        title: "Дашброад",
+        title: "sidenav.dashboard",
         icon: DashboardOutlined,
         breadcrumb: true,
         submenu: [],
       },
       {
-        key: "scheduler",
+        key: "sidenav.scheduler",
         path: `${APP_PREFIX_PATH}/home/scheduler`,
-        title: "Планировщик",
+        title: "sidenav.scheduler",
         icon: ToolOutlined,
         breadcrumb: true,
         submenu: [],
       },
       {
-        key: "catalog",
+        key: "sidenav.catalog",
         path: `${APP_PREFIX_PATH}/home/catalog`,
-        title: "Каталог",
+        title: "sidenav.catalog",
         icon: ShoppingCartOutlined,
         breadcrumb: true,
         submenu: [
           {
-            key: "products",
+            key: "sidenav.catalog.products",
             path: `${APP_PREFIX_PATH}/home/catalog/products`,
-            title: "Товары",
+            title: "sidenav.catalog.products",
             icon: "",
             breadcrumb: true,
             submenu: [],
           },
           {
-            key: "categories",
+            key: "sidenav.catalog.categories",
             path: `${APP_PREFIX_PATH}/home/catalog/categories`,
-            title: "Категории",
+            title: "sidenav.catalog.categories",
             icon: "",
             breadcrumb: true,
             submenu: [],
           },
           {
-            key: "collections",
+            key: "sidenav.catalog.collections",
             path: `${APP_PREFIX_PATH}/home/catalog/collections`,
-            title: "Коллекции",
+            title: "sidenav.catalog.collections",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -73,7 +73,7 @@ const dashBoardNavTree = [
           {
             key: "combo",
             path: `${APP_PREFIX_PATH}/home/catalog/combo`,
-            title: "Комбо",
+            title: "sidenav.catalog.combo",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -83,7 +83,7 @@ const dashBoardNavTree = [
       {
         key: "orders",
         path: `${APP_PREFIX_PATH}/home/orders`,
-        title: "Заказы",
+        title: "sidenav.orders",
         icon: ShoppingOutlined,
         breadcrumb: true,
         submenu: [],
@@ -91,14 +91,14 @@ const dashBoardNavTree = [
       {
         key: "customers",
         path: `${APP_PREFIX_PATH}/home/customers`,
-        title: "Клиенты",
+        title: "sidenav.customers",
         icon: UserOutlined,
         breadcrumb: true,
         submenu: [
           {
             key: "listClients",
             path: `${APP_PREFIX_PATH}/home/customers/listClients`,
-            title: "Список клиентов",
+            title: "sidenav.customers.listClients",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -106,7 +106,7 @@ const dashBoardNavTree = [
           {
             key: "groupsClients",
             path: `${APP_PREFIX_PATH}/home/customers/groupsClients`,
-            title: "Группы клиентов",
+            title: "sidenav.customers.groupsClients",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -116,7 +116,7 @@ const dashBoardNavTree = [
       {
         key: "banners",
         path: `${APP_PREFIX_PATH}/home/banners`,
-        title: "Баннеры",
+        title: "sidenav.banners",
         icon: PictureOutlined,
         breadcrumb: true,
         submenu: [],
@@ -124,7 +124,7 @@ const dashBoardNavTree = [
       {
         key: "promoCodes",
         path: `${APP_PREFIX_PATH}/home/promoCodes`,
-        title: "Промокоды",
+        title: "sidenav.promoCodes",
         icon: GiftOutlined,
         breadcrumb: true,
         submenu: [],
@@ -132,14 +132,14 @@ const dashBoardNavTree = [
       {
         key: "offlinePoints",
         path: `${APP_PREFIX_PATH}/home/offlinePoints`,
-        title: "Оффлайн точки",
+        title: "sidenav.offlinePoints",
         icon: ShopOutlined,
         breadcrumb: true,
         submenu: [
           {
             key: "addresses",
             path: `${APP_PREFIX_PATH}/home/offlinePoints/addresses`,
-            title: "Адреса",
+            title: "sidenav.offlinePoints.addresses",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -147,7 +147,7 @@ const dashBoardNavTree = [
           {
             key: "geofences",
             path: `${APP_PREFIX_PATH}/home/offlinePoints/geofences`,
-            title: "Геозоны",
+            title: "sidenav.offlinePoints.geofences",
             icon: "",
             breadcrumb: true,
             submenu: [],
@@ -157,7 +157,7 @@ const dashBoardNavTree = [
       {
         key: "staff",
         path: `${APP_PREFIX_PATH}/home/staff`,
-        title: "Сотрудники",
+        title: "sidenav.staff",
         icon: TeamOutlined,
         breadcrumb: true,
         submenu: [],
@@ -165,7 +165,7 @@ const dashBoardNavTree = [
       {
         key: "mailing",
         path: `${APP_PREFIX_PATH}/home/mailing`,
-        title: "Рассылки",
+        title: "sidenav.mailing",
         icon: MailOutlined,
         breadcrumb: true,
         submenu: [],
@@ -178,14 +178,14 @@ const systemNavTree = [
   {
     key: "system",
     path: `${APP_PREFIX_PATH}/system`,
-    title: "Системные",
+    title: "system",
     icon: "",
     breadcrumb: true,
     submenu: [
       {
         key: "settings",
         path: `${APP_PREFIX_PATH}/system/settings`,
-        title: "Настройки",
+        title: "sidenav.system.settings",
         icon: SettingOutlined,
         breadcrumb: true,
         submenu: [],
@@ -193,7 +193,7 @@ const systemNavTree = [
       {
         key: "mobileApplication",
         path: `${APP_PREFIX_PATH}/system/mobileApplication`,
-        title: "Мобильное приложение",
+        title: "sidenav.system.mobileApplication",
         icon: TabletOutlined,
         breadcrumb: true,
         submenu: [],
@@ -201,7 +201,7 @@ const systemNavTree = [
       {
         key: "logs",
         path: `${APP_PREFIX_PATH}/system/logs`,
-        title: "Логи",
+        title: "sidenav.system.logs",
         icon: FileTextOutlined ,
         breadcrumb: true,
         submenu: [],
