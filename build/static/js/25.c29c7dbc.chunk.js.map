@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/app-views/mobileApplication/index.js"],"names":["MobileApplication"],"mappings":"0HAMeA,UAJW,WACtB,OAAO","file":"static/js/25.c29c7dbc.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst MobileApplication = () => {\r\n    return <p>Мобильное приложение</p>\r\n}\r\n\r\nexport default MobileApplication;\r\n"],"sourceRoot":""}

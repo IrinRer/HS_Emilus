@@ -88,7 +88,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.4",
-    "gh-pages": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-debug": "^4.0.0",

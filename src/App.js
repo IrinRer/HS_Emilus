@@ -1,7 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { DndProvider } from 'react-dnd'
 import { BrowserRouter as Router } from 'react-router-dom';
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import Views from './views';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
@@ -16,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
+      <DndProvider backend={HTML5Backend}>
         <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
           <Router basename={window.location.pathname || ''}>
             <Switch>
@@ -23,6 +26,7 @@ function App() {
             </Switch>
           </Router>
         </ThemeSwitcherProvider>
+        </DndProvider>
       </Provider>
     </div>
   );

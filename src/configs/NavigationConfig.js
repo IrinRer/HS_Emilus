@@ -11,6 +11,7 @@ import {
   SettingOutlined,
   TabletOutlined,
   FileTextOutlined,
+  ToolOutlined
 } from "@ant-design/icons";
 import { APP_PREFIX_PATH } from "configs/AppConfig";
 
@@ -27,6 +28,14 @@ const dashBoardNavTree = [
         path: `${APP_PREFIX_PATH}/home/dashbroad`,
         title: "Дашброад",
         icon: DashboardOutlined,
+        breadcrumb: true,
+        submenu: [],
+      },
+      {
+        key: "scheduler",
+        path: `${APP_PREFIX_PATH}/home/scheduler`,
+        title: "Планировщик",
+        icon: ToolOutlined,
         breadcrumb: true,
         submenu: [],
       },
