@@ -1,70 +1,166 @@
-# Getting Started with Create React App
+## Задание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Часть 1**
 
-## Available Scripts
++ Необходимо реализовать боковое меню с разделами
++ В раздел Клиенты -> Список клиентов перенести реализацию страницы
+Pages -> User list из демо проекта. Данные о пользователях получать по
+api https://jsonplaceholder.typicode.com . Столбцы из демо можно
+заменить на свои(на те поля которые приходят в апи)
++ Пока данные загружаются на экране должен крутиться лоадер
++ При нажатии на пользователя открывать страницу аналогичную
+странице в демо Pages -> Setting (только вкладка Edit Profile). Подставить
+данные выбранного пользователя. Поля также можно поменять на
+подходящие
++ При нажатии на Save Changes имитировать отправку данных на сервер,
+покрутить секунду лоадер и вернуться обратно на список пользователей
 
-In the project directory, you can run:
+**Часть 2**
 
-### `yarn start`
+Реализовать простой 2д планировщик:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
++ Сделать блок со списком объектов на выбор(это могут быть 2д
+фотографии столов, стульев, перегородок)
++ Сделать доску на которое можно добавлять эти объекты и перемещать
+их мышкой
++ Должна быть возможность сохранения расстановки в файл(сохранять id
+объекта и его координаты)
++ Также должна быть возможность импорта этого файла с координатами и
+отображения сохраненной расстановки
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Технологии
 
-### `yarn test`
+1. React
+2. Redux
+3. Less
+4. Antd
+5. Html2canvas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Что было сделано 
 
-### `yarn build`
+1. Перевод сайта на русский язык. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+const RuLang = {
+  antd: antdRuRU,
+  locale: "ru",
+  messages: {
+    ...ruMsg,
+  },
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**RuLang** - объект конфигурации. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**antdRuRU** - импортирую из antd
 
-### `yarn eject`
+**ruMsg** - json файл
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Затем в **AppLocale** передаю данную конфигурацию. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+const AppLocale = {
+    en: enLang,
+    zh: zhLang,
+    fr: frLang,
+    ja: jaLang,
+    ru: ruLang
+};
+```
+В **THEME_CONFIG** устанавливаю ``locale: ru``.
+```
+export const THEME_CONFIG = {
+	navCollapsed: false,
+	sideNavTheme: SIDE_NAV_LIGHT,
+	locale: 'ru',
+	navType: NAV_TYPE_SIDE,
+	topNavColor: '#3e82f7',
+	headerNavColor: '',
+	mobileNav: false,
+	currentTheme: 'light'
+};
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Перетаскивание объектов. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Сначала нужно нажать на объект, который вы хотите перетащить, затем он перейдет на другую доску, в которой вы можете его перемещать.**
 
-## Learn More
+Для этого я использовала события мыши: onMouseDown, onMouseMove, onMouseUp.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+const onMouseDown = useCallback(
+    (item) => {
+      idRef.current = item.id;
+      elementRef.current.style.position = "absolute";
+      const onMouseMove = (event) => {
+        position.x += event.movementX;
+        position.y += event.movementY;
+        const element = elementRef.current;
+        if (element && element.className === "api-table") {
+          element.style.transform = `translate(${position.x}px, ${position.y}px)`;
+        }
+        setPosition(position);
+      };
+      const onMouseUp = (event) => {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+        if (elementRef.current) {
+          document.body
+            .querySelector(".api-scheduler-board")
+            .append(elementRef.current);
+        }
+        dispatch(
+          schedulerTableAction({
+            id: idRef.current,
+            x: position.x,
+            y: position.y,
+          })
+        );
+      };
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    },
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    [position, dispatch]
+  );
+```
 
-### Code Splitting
+3. Доску, в которую вы переместили объект можно скачать в формате **.png**. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Для этого я использую библиотеку html2canvas.
 
-### Analyzing the Bundle Size
+```
+const exportAsImage = async (el, imageFileName) => {
+    const canvas = await html2canvas(el);
+    const image = canvas.toDataURL("image/png", 1.0);
+    downloadImage(image, imageFileName);
+  };
+  const downloadImage = (blob, fileName) => {
+    const fakeLink = window.document.createElement("a");
+    fakeLink.style = "display:none;";
+    fakeLink.download = fileName;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    fakeLink.href = blob;
 
-### Making a Progressive Web App
+    document.body.appendChild(fakeLink);
+    fakeLink.click();
+    document.body.removeChild(fakeLink);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    fakeLink.remove();
+  };
+  ```
+  
+  ## Как запустить 
+  
+  1. Клонируете репозиторий
+  
+  ``git clone https://github.com/IrinRer/HS_Emilus.git``
+  
+  2. Устанавливаете зависимости
+  
+  ``npm ci``
+  
+  3. Запускаете проект
+  
+  ``npm run dev``
+  
