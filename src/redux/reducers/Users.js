@@ -16,7 +16,6 @@ const users = (state = initState, action) => {
       };
     case USER_DELETE:
       const newUser = state.users.filter((item) => item.id !== action.payload);
-      console.log(newUser);
       message.success({
         content: `Deleted user ${action.payload}`,
         duration: 2,

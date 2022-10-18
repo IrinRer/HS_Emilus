@@ -24,6 +24,7 @@ const ComponentChair = () => {
   const onMouseDown = useCallback(
     (item) => {
       idRef.current = item.id;
+      elementRef.current.style.position = "absolute";
       const onMouseMove = (event) => {
         position.x += event.movementX;
         position.y += event.movementY;
@@ -33,6 +34,11 @@ const ComponentChair = () => {
         }
       };
       const onMouseUp = () => {
+        if (elementRef.current) {
+          document.body
+            .querySelector(".api-scheduler-board")
+            .append(elementRef.current);
+        }
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
 

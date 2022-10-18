@@ -18,6 +18,7 @@ const ComponentTable = () => {
   const onMouseDown = useCallback(
     (item) => {
       idRef.current = item.id;
+      elementRef.current.style.position = "absolute";
       const onMouseMove = (event) => {
         position.x += event.movementX;
         position.y += event.movementY;
@@ -27,9 +28,14 @@ const ComponentTable = () => {
         }
         setPosition(position);
       };
-      const onMouseUp = () => {
+      const onMouseUp = (event) => {
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
+        if (elementRef.current) {
+          document.body
+            .querySelector(".api-scheduler-board")
+            .append(elementRef.current);
+        }
         dispatch(
           schedulerTableAction({
             id: idRef.current,
