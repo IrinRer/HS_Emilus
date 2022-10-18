@@ -1,4 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { schedulerChairAction } from "redux/actions/Scheduler";
 
 const arr = [
   { id: 1, name: "стул" },
@@ -14,37 +16,39 @@ const arr = [
 ];
 
 const ComponentChair = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [current, setCurrent] = useState();
-  const [id, setId] = useState(1);
+  const [position] = useState({ x: 0, y: 0 });
   const elementRef = useRef();
+  const idRef = useRef();
+  const dispatch = useDispatch();
 
   const onMouseDown = useCallback(
     (item) => {
-        const onMouseMove = (event) => {
-          position.x += event.movementX;
-          position.y += event.movementY;
-          const element = elementRef.current;
-          if (
-            element &&
-            element.className === "api-chair"
-          ) {
-            // element.style.position = 'relative';
-            element.style.transform = `translate(${position.x}px, ${position.y}px)`;
-            // element.style.left = `${position.x}px`;
-            // element.style.top = `${position.y}px`
-          }
-          setPosition(position)
-        };
-        const onMouseUp = () => {
-          document.removeEventListener("mousemove", onMouseMove);
-          document.removeEventListener("mouseup", onMouseUp);
-        };
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
+      idRef.current = item.id;
+      const onMouseMove = (event) => {
+        position.x += event.movementX;
+        position.y += event.movementY;
+        const element = elementRef.current;
+        if (element && element.className === "api-chair") {
+          element.style.transform = `translate(${position.x}px, ${position.y}px)`;
+        }
+      };
+      const onMouseUp = () => {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+
+        dispatch(
+          schedulerChairAction({
+            id: idRef.current,
+            x: position.x,
+            y: position.y,
+          })
+        );
+      };
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
     },
 
-    [position, setPosition]
+    [position, dispatch]
   );
 
   return (
@@ -52,8 +56,7 @@ const ComponentChair = () => {
       {arr.map((item) => (
         <div
           onMouseDown={(e) => {
-            setCurrent(e);
-            elementRef.current = e.target
+            elementRef.current = e.target;
             onMouseDown(item);
           }}
           className="api-chair"

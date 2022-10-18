@@ -1,0 +1,3 @@
+export const SCHEDULER = 'SCHEDULER';
+export const SCHEDULER_CHAIR = 'SCHEDULER_CHAIR';
+export const SCHEDULER_TABLE = 'SCHEDULER_TABLE';
